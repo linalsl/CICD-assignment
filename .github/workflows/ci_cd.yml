@@ -1,3 +1,4 @@
+
 name: CI/CD
 
 on:
@@ -12,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout the repository now
+      # Checkout the repository
       - uses: actions/checkout@v3
 
       # Set up Python
@@ -28,14 +29,13 @@ jobs:
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
       # Step 3: Lint Python code
+      #### 
       - name: Lint Python code
-       run: |
-        if [ -f .flake8 ] || [ -f setup.cfg ] || [ -f tox.ini ] || [ -f .pep8 ]; 
-         then 
-          flake8 .
-        else 
-          echo "No lint configuration found, skipping linting."
-        fi
+        run: |
+          if [ -f .flake8 ] || [ -f setup.cfg ] || [ -f tox.ini ] || [-f .pep8 ]; then flake8 .
+          else 
+            echo "No lint configuration found, skipping linting."
+          fi
 
       # Step 4: Run Python tests
       ####
